@@ -44,11 +44,8 @@ I downloaded and installed Stencil CLI for local Development and created an API 
 --------------------
 Creating a feature that will show the product's second image when it is hovered on.
 
-1. Result
-  - Go to **Special Items Category**.
-  - Hover over the product to see the effect.
+1. Process: 
 
-2. Steps
   - Generally, Cornerstone theme template files are located in `templates/pages`. Each of these files have their corresponding JavaScript `.js` files in `assets/js/theme`. These latter contains event handlers and logic for managing page specific element and actions.
   
   - Therefore, since the hover feature was to be implemented on the category page **Special Items**, I located the file `templates/pages/category.html` which led me down to `templates/components/common/responsive-img.html`. I then located the corresponding JavaScript file that is `assets/js/theme/category.js`.
@@ -69,23 +66,23 @@ Creating a feature that will show the product's second image when it is hovered 
       this.onRemoveProductSecondImage.bind(this)
     );
   ```
+  2. Result
+  - Go to **Special Items Category**.
+  - Hover over the product to see the effect.
 
 ## Part 2
 --------------------
 Adding a button at the top of the category page labeled **Add All To Cart**. When clicked, the product will be added to the cart then notify the user that the product has been added.
 
-1. Result
-  - Go to **Special Items Category**.
-  - Click the button **Add All To Cart** at the top of the category.
 
-2. Steps
+
+1. Process:
   - I located the corresponding category file in `templates/pages` and added the logic in:
 
   -- `templates/pages/category.html` (Line 49)
   ```
     {{#if category.name "===" "Special Items"}}
   ```
-  **NOTE**: Each button **Add All To Cart** is to add products from its related category to the cart. However, here in our case there is only one product in the category **Special Items** and no products in other default categories. So, here I checked to make sure that the button only displays if the user is on **Special Items Catagery Page**. This is handy for this case only. Alternatively, should we have products in each of the other categories, the right way to inplement this is to use the Sotrefront's API to check if the current category page has products in this category. If there is at least one product we display or enable the button to add items to the cart. 
 
   -- `templates/pages/category.html` (Line 50-55)
   ```
@@ -111,14 +108,16 @@ Adding a button at the top of the category page labeled **Add All To Cart**. Whe
   ```
     $("#addAllToCart").on("click", this.onAddAllToCart.bind(this));
   ```
+2. Result:
+  - Go to Special Items Category.
+  - Click the button Add All To Cart at the top of the category.
 
-
-## Feature 3
+## Part 3
 --------------------
 If the cart has an item in it - show a button next to the **Add All To Cart** button which says **Remove All Items**. When clicked it should clear the cart and notify the user.
 
 
-1. Steps:
+1. Process:
 
   - Still in the file `templates/pages`, I included:
 
@@ -140,22 +139,17 @@ If the cart has an item in it - show a button next to the **Add All To Cart** bu
   this.onCheckCart();
   $("#removeAllItems").on("click", this.onRemoveAllItems.bind(this));
   ```
-  2. Result
+  2. Result:
   - Go to **Special Items Category**.
   - Click the button **Remove All Items** after clicking on **Add All To Cart** at the top of the category.
 
 
-## Feature 4 (The Bonus)
+## The Bonus 
 --------------------
 If a customer is logged in - at the top of the category page show a banner that shows some customer details (i.e. name, email, phone etc). This should utilize the data that is rendered via Handlebars on the Customer Object.
 
-1. Result
-  - At the top of the page, click on *SIGN IN*. You can *REGISTER* first if you don't have an account.
-  - Once registered or signed in, a barner or the user's basic details appears at the top the category page.
+1. Process:
 
-  **NOTE**: Since this is bar that shows the user's details, I've put it at the very top of the page so that it appears everywhere you browse. If we don't want this to happen we can tehn inplement it on the Category page in `templates/pages/category.html`.
-
-2. Steps
   - I first located the file `templates/pages/home.html` which led me to the partial file `templates/layout/base.html` then to the file `templates/components/common/header.html`. Having the logging user's details which were made avaiable through the Handlebars Customer Object, I added:
 
   -- `templates/components/common/header.html` (Line 14-39)
@@ -187,15 +181,19 @@ If a customer is logged in - at the top of the category page show a banner that 
       </header>
     {{/if}}
   ```
-  
+  2. Result:
+  - At the top of the page, click on *SIGN IN*. You can *REGISTER* first if you don't have an account.
+  - Once registered or signed in, a barner or the user's basic details appears at the top the category page.
+
 ## CSS Styles
-I created a sass file named **custom.scss** in **assets/scss** then added all the css rules needed for these tasks. This file was then imported in **assets/scss/theme.scss** to make it availabe for the entire wesbsite.
+I created a sass file named **custom.scss** in **assets/scss** then added all the css rules needed for these tasks. This file was then imported in **assets/scss/theme.scss** to make it availabe for the entire wesbsite. To attempt to personalize the site I took some liberties to edit some css in order to mimic a John Wick film color palette.
 
 
 # Challenges Encountered
 - Initicially I had issues with using the right template version from either Github Cornerstone repo or directly from BigCommerce. Later on I encountered issues with being able to run my build and uploading it to the BigCommerce trial.
+- Another issue that I have is properly uploading images to the sourceset. It's been causing frequent issues for me to upload my own images to adhere to the feature's display mechanisms.
 
 # Documentation References
 - https://www.youtube.com/watch?v=Mvl2LpVSL0I Kal Wiggins was an amazing help with navigating certain challenges with the installation of Stencil CLI and to be able to see my local working environment.
 # Improvements
-If I were given more time I would have attempted to make an entire React.JS version of the store with the requested features of the assignment. This was my first time navigating BigCommerce and it was an excellent oppurtunity for me to gain some experience and insight on what kind of assignments I'd be building in an active e-commerce workplace including gaining some experience with SCSS logic.# ObundleTest
+If I were given more time I would have attempted to make an entire React.JS version of the store with the requested features of the assignment. This was my first time navigating BigCommerce and utilizing Stencil CLI it was an excellent oppurtunity for me to gain some experience and insight on what kind of assignments I'd be building in an active e-commerce workplace including gaining some experience with SCSS logic.
